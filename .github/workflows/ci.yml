@@ -10,6 +10,10 @@ permissions:
   id-token: write
   attestations: write
 
+env:
+  REGISTRY: "ghcr.io/lucchmielowski"
+  IMAGE_NAME: "gh-attestation-test"
+
 jobs:
   build-push-and-attest:
     runs-on: ubuntu-latest
@@ -33,12 +37,12 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/lucchmielowski/gh-attestation-test:latest
+          tags: ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}:latest
 
       - name: Generate build provenance attestation
         uses: actions/attest-build-provenance@v1
         with:
-          subject-name: ghcr.io/lucchmielowski/gh-annotation-test:latest
+          subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           subject-digest: ${{ steps.build.outputs.digest }}
           push-to-registry: true
 
