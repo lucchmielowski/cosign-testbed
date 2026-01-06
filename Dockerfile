@@ -1,11 +1,10 @@
 FROM alpine:3.20
 
+ARG IMAGE_TYPE=signed
+ENV IMAGE_TYPE=${IMAGE_TYPE}
+
 WORKDIR /app
 
-# There is no strict need for the annotation script inside the image,
-# but copying the repo in keeps the image content tied to this repo.
-COPY . .
-
-CMD ["sh", "-c", "echo 'gh-annotation-test image built from $GITHUB_SHA'"]
+CMD ["sh", "-c", "echo 'gh-annotation-test image built from $GITHUB_SHA (type: $IMAGE_TYPE)'"]
 
 
