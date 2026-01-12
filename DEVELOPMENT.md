@@ -167,8 +167,17 @@ spec:
 
 ### Build Image Locally
 
+For local testing on the native platform:
+
 ```bash
 docker build -t test-image:local .
+```
+
+For multi-platform builds (requires Docker Buildx):
+
+```bash
+# Build for both amd64 and arm64
+docker buildx build --platform linux/amd64,linux/arm64 -t test-image:local .
 ```
 
 ### Generate Test Key Pair
@@ -292,6 +301,10 @@ cleanup (runs first)
 
 (All build jobs run in parallel after cleanup completes)
 ```
+
+**All images are built as multi-platform images supporting:**
+- `linux/amd64` (Intel/AMD x86_64)
+- `linux/arm64` (ARM64, including Apple Silicon M1/M2/M3)
 
 ### Job Details
 

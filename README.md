@@ -4,6 +4,8 @@ Container images for testing GitHub attestations and Kyverno's cosign verificati
 
 **Registry:** `ghcr.io/lucchmielowski/cosign-testbed`
 
+**Platforms:** `linux/amd64`, `linux/arm64` (MacOS ARM/M1/M2/M3 supported)
+
 ## Available Images
 
 ### GitHub Attestation Images
