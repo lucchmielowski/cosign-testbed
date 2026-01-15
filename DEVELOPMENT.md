@@ -91,7 +91,7 @@ spec:
             - Pod
       verifyImages:
       - imageReferences:
-        - "ghcr.io/lucchmielowski/cosign-testbed:v2-traditional"
+        - "ghcr.io/lucchmielowski/kyverno-cosign-testbed:v2-traditional"
         attestors:
         - entries:
           - keys:
@@ -108,7 +108,7 @@ spec:
             - Pod
       verifyImages:
       - imageReferences:
-        - "ghcr.io/lucchmielowski/cosign-testbed:v3-bundle"
+        - "ghcr.io/lucchmielowski/kyverno-cosign-testbed:v3-bundle"
         attestors:
         - entries:
           - keys:
@@ -136,11 +136,11 @@ spec:
             - Pod
       verifyImages:
       - imageReferences:
-        - "ghcr.io/lucchmielowski/cosign-testbed:v2-keyless"
+        - "ghcr.io/lucchmielowski/kyverno-cosign-testbed:v2-keyless"
         attestors:
         - entries:
           - keyless:
-              subject: "https://github.com/lucchmielowski/cosign-testbed/.github/workflows/ci.yml@refs/heads/main"
+              subject: "https://github.com/lucchmielowski/kyverno-cosign-testbed/.github/workflows/ci.yml@refs/heads/main"
               issuer: "https://token.actions.githubusercontent.com"
               rekor:
                 url: https://rekor.sigstore.dev
@@ -153,11 +153,11 @@ spec:
             - Pod
       verifyImages:
       - imageReferences:
-        - "ghcr.io/lucchmielowski/cosign-testbed:v3-keyless"
+        - "ghcr.io/lucchmielowski/kyverno-cosign-testbed:v3-keyless"
         attestors:
         - entries:
           - keyless:
-              subject: "https://github.com/lucchmielowski/cosign-testbed/.github/workflows/ci.yml@refs/heads/main"
+              subject: "https://github.com/lucchmielowski/kyverno-cosign-testbed/.github/workflows/ci.yml@refs/heads/main"
               issuer: "https://token.actions.githubusercontent.com"
               rekor:
                 url: https://rekor.sigstore.dev
@@ -169,17 +169,17 @@ spec:
 
 ```bash
 # List all tags including .sig images
-crane ls ghcr.io/lucchmielowski/cosign-testbed
+crane ls ghcr.io/lucchmielowski/kyverno-cosign-testbed
 
 # Inspect a specific signature manifest
-cosign tree ghcr.io/lucchmielowski/cosign-testbed:v3-traditional
+cosign tree ghcr.io/lucchmielowski/kyverno-cosign-testbed:v3-traditional
 ```
 
 ### Check Rekor Transparency Log (for keyless signatures)
 
 ```bash
 # Search for signatures in Rekor
-rekor-cli search --artifact ghcr.io/lucchmielowski/cosign-testbed:v2-keyless
+rekor-cli search --artifact ghcr.io/lucchmielowski/kyverno-cosign-testbed:v2-keyless
 
 # View specific Rekor entry
 rekor-cli get --uuid <uuid-from-search>
@@ -190,9 +190,9 @@ rekor-cli get --uuid <uuid-from-search>
 ```bash
 # Verify and show certificate details
 cosign verify \
-  --certificate-identity=https://github.com/lucchmielowski/cosign-testbed/.github/workflows/ci.yml@refs/heads/main \
+  --certificate-identity=https://github.com/lucchmielowski/kyverno-cosign-testbed/.github/workflows/ci.yml@refs/heads/main \
   --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
-  ghcr.io/lucchmielowski/cosign-testbed:v2-keyless | jq
+  ghcr.io/lucchmielowski/kyverno-cosign-testbed:v2-keyless | jq
 ```
 
 ## Local Testing
@@ -287,7 +287,7 @@ This will delete all versions of the image from GHCR.
 
 ```bash
 # Verification works by tag (recommended)
-cosign verify --key cosign.pub ghcr.io/lucchmielowski/cosign-testbed:v3-bundle
+cosign verify --key cosign.pub ghcr.io/lucchmielowski/kyverno-cosign-testbed:v3-bundle
 ```
 
 **Note:** Other images (v2-traditional, v3-traditional, etc.) don't have this issue and are signed by tag successfully.
@@ -331,7 +331,7 @@ cosign verify --key cosign.pub ghcr.io/lucchmielowski/cosign-testbed:v3-bundle
 **Solution:**
 - First push should create the package automatically
 - Ensure you have `packages: write` permission
-- Check the package exists at `https://github.com/users/lucchmielowski/packages/container/package/cosign-testbed`
+- Check the package exists at `https://github.com/users/lucchmielowski/packages/container/package/kyverno-cosign-testbed`
 
 ## CI Workflow Structure
 
@@ -419,7 +419,7 @@ Generates a cosign key pair and provides instructions for adding secrets to GitH
 
 ### `cleanup-ghcr.sh`
 
-Deletes all versions of the cosign-testbed image from GHCR.
+Deletes all versions of the kyverno-cosign-testbed image from GHCR.
 
 ```bash
 ./cleanup-ghcr.sh
@@ -449,7 +449,7 @@ The CI workflow uses the following environment variables:
 ```yaml
 env:
   REGISTRY: "ghcr.io/lucchmielowski"
-  IMAGE_NAME: "cosign-testbed"
+  IMAGE_NAME: "kyverno-cosign-testbed"
 ```
 
 To use this setup for your own repository, update these values in `.github/workflows/ci.yml`.

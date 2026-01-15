@@ -2,8 +2,8 @@
 set -e
 
 REGISTRY="ghcr.io/lucchmielowski"
-IMAGE_NAME="gh-attestation-test"
-PACKAGE_NAME="gh-attestation-test"  # Package name in GHCR
+IMAGE_NAME="kyverno-cosign-testbed"
+PACKAGE_NAME="kyverno-cosign-testbed"  # Package name in GHCR
 
 echo "=== GHCR Image Cleanup ==="
 echo ""

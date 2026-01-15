@@ -1,8 +1,8 @@
-# Cosign Testbed
+# Kyverno Cosign Testbed
 
-Container images for testing GitHub attestations and Kyverno's cosign verification.
+Container images for testing Kyverno's cosign verification against multiple cosign use cases.
 
-**Registry:** `ghcr.io/lucchmielowski/cosign-testbed`
+**Registry:** `ghcr.io/lucchmielowski/kyverno-cosign-testbed`
 
 **Platforms:** `linux/amd64`, `linux/arm64` (MacOS ARM/M1/M2/M3 supported)
 
@@ -79,9 +79,9 @@ All sample policies are located in the [`sample-policies/`](sample-policies/) di
 # Using cosign to verify GitHub build provenance attestation
 cosign verify-attestation \
   --type https://slsa.dev/provenance/v1 \
-  --certificate-identity=https://github.com/lucchmielowski/cosign-testbed/.github/workflows/ci.yml@refs/heads/main \
+  --certificate-identity=https://github.com/lucchmielowski/kyverno-cosign-testbed/.github/workflows/ci.yml@refs/heads/main \
   --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
-  ghcr.io/lucchmielowski/cosign-testbed:github-attestation
+  ghcr.io/lucchmielowski/kyverno-cosign-testbed:github-attestation
 ```
 
 **SBOM (Software Bill of Materials):**
@@ -90,22 +90,22 @@ cosign verify-attestation \
 # Using cosign to verify GitHub SBOM attestation
 cosign verify-attestation \
   --type https://spdx.dev/Document \
-  --certificate-identity=https://github.com/lucchmielowski/cosign-testbed/.github/workflows/ci.yml@refs/heads/main \
+  --certificate-identity=https://github.com/lucchmielowski/kyverno-cosign-testbed/.github/workflows/ci.yml@refs/heads/main \
   --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
-  ghcr.io/lucchmielowski/cosign-testbed:github-sbom
+  ghcr.io/lucchmielowski/kyverno-cosign-testbed:github-sbom
 ```
 
 ### Cosign Key-Based Signatures
 
 ```bash
 # v2-traditional (verify with any cosign v2 or v3)
-cosign verify --key cosign.pub ghcr.io/lucchmielowski/cosign-testbed:v2-traditional
+cosign verify --key cosign.pub ghcr.io/lucchmielowski/kyverno-cosign-testbed:v2-traditional
 
 # v3-traditional (verify with cosign v3)
-cosign verify --key cosign.pub ghcr.io/lucchmielowski/cosign-testbed:v3-traditional
+cosign verify --key cosign.pub ghcr.io/lucchmielowski/kyverno-cosign-testbed:v3-traditional
 
 # v3-bundle (verify with cosign v3)
-cosign verify --key cosign.pub ghcr.io/lucchmielowski/cosign-testbed:v3-bundle
+cosign verify --key cosign.pub ghcr.io/lucchmielowski/kyverno-cosign-testbed:v3-bundle
 ```
 
 ### Cosign Keyless Signatures
@@ -113,15 +113,15 @@ cosign verify --key cosign.pub ghcr.io/lucchmielowski/cosign-testbed:v3-bundle
 ```bash
 # v2-keyless (verify with GitHub Actions OIDC identity)
 cosign verify \
-  --certificate-identity=https://github.com/lucchmielowski/cosign-testbed/.github/workflows/ci.yml@refs/heads/main \
+  --certificate-identity=https://github.com/lucchmielowski/kyverno-cosign-testbed/.github/workflows/ci.yml@refs/heads/main \
   --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
-  ghcr.io/lucchmielowski/cosign-testbed:v2-keyless
+  ghcr.io/lucchmielowski/kyverno-cosign-testbed:v2-keyless
 
 # v3-keyless (verify with GitHub Actions OIDC identity)
 cosign verify \
-  --certificate-identity=https://github.com/lucchmielowski/cosign-testbed/.github/workflows/ci.yml@refs/heads/main \
+  --certificate-identity=https://github.com/lucchmielowski/kyverno-cosign-testbed/.github/workflows/ci.yml@refs/heads/main \
   --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
-  ghcr.io/lucchmielowski/cosign-testbed:v3-keyless
+  ghcr.io/lucchmielowski/kyverno-cosign-testbed:v3-keyless
 ```
 
 ## Understanding Signature Artifacts
@@ -132,8 +132,8 @@ Created by: `:v2-traditional`, `:v3-traditional`, `:v3-bundle`
 These store the signature as a separate OCI image in the registry with a `.sig` tag suffix. This is the original cosign format and is backward compatible across cosign versions.
 
 **Example:**
-- Image: `ghcr.io/lucchmielowski/cosign-testbed:v3-traditional`
-- Signature: `ghcr.io/lucchmielowski/cosign-testbed:sha256-abc123.sig`
+- Image: `ghcr.io/lucchmielowski/kyverno-cosign-testbed:v3-traditional`
+- Signature: `ghcr.io/lucchmielowski/kyverno-cosign-testbed:sha256-abc123.sig`
 
 ### Keyless Signatures (Fulcio + Rekor)
 Created by: `:v2-keyless`, `:v3-keyless`

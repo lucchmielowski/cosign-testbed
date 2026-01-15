@@ -12,7 +12,7 @@ permissions:
 
 env:
   REGISTRY: "ghcr.io/lucchmielowski"
-  IMAGE_NAME: "cosign-testbed"
+  IMAGE_NAME: "kyverno-cosign-testbed"
 
 jobs:
   cleanup:
