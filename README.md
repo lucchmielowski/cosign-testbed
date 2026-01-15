@@ -31,7 +31,7 @@ The following table shows which sample policies work with which image types:
 | `cpol-key.yaml` | ClusterPolicy | Key-based | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ |
 | `cpol-att.yaml` | ClusterPolicy | GitHub Attestation | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | `cpol-sbom.yaml` | ClusterPolicy | GitHub SBOM | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| `ivpol.yaml` | ImageValidatingPolicy | Keyless | ❌ | ❌ | ❌ | ✅ | ✅ | ✅ | ✅ |
+| `ivpol.yaml` | ImageValidatingPolicy | Keyless | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ | ❌ |
 | `ivpol-key.yaml` | ImageValidatingPolicy | Key-based | ❌ | ❌ | ✅ | ❌ | ✅ | ❌ | ✅ |
 | `ivpol-gh-att.yaml` | ImageValidatingPolicy | GitHub Attestation | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | `ivpol-sbom.yaml` | ImageValidatingPolicy | GitHub SBOM | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
