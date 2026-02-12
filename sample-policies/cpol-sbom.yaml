@@ -17,7 +17,7 @@ spec:
         - imageReferences:
             - "ghcr.io/lucchmielowski/kyverno-cosign-testbed:*"
           attestations:
-            - type: https://spdx.dev/Document
+            - type: https://spdx.dev/Document/v2.3
               attestors:
                 - entries:
                     - keyless:
