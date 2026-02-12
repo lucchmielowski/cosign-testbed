@@ -2,7 +2,7 @@
 apiVersion: policies.kyverno.io/v1
 kind: ImageValidatingPolicy
 metadata:
-  name: verify-github-attestations
+  name: verify-github-attestations-private
 spec:
   validationActions: [Deny]
   webhookConfiguration:
@@ -42,9 +42,6 @@ spec:
               issuer: "https://token.actions.githubusercontent.com"
         ctlog:
           url: "https://rekor.sigstore.dev"
-        source:
-          PullSecrets:
-            - name: "ghcr-secret"
 
   # Validation expressions
   validations:

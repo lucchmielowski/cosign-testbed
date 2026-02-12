@@ -24,9 +24,6 @@ spec:
               issuer: "https://token.actions.githubusercontent.com"
         ctlog:
           url: "https://rekor.sigstore.dev"
-        source:
-          PullSecrets:
-            - name: ghcr-secret
   validations:
     - expression: >-
         images.containers.map(image, verifyImageSignatures(image, [attestors.cosign])).all(e, e > 0)
